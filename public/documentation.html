@@ -12,14 +12,97 @@
 <body>
     <h1> Application Documentation </h1>
     <p>
-        <ul>
-        	<li>This project builds the back-end of a "movies" application.</li>
-        	<li>This application will allow you to select different movies, directors, and genres.</li>
-        	<li>Coming soon, you will be able to sign up and create a list of your favorite
+    <ul>
+        <li>This project builds the back-end of a "movies" application.</li>
+        <li>This application will allow you to select different movies, directors, and genres.</li>
+        <li>Coming soon, you will be able to sign up and create a list of your favorite
             movies. This way you can learn more about the movies you watch and are interested in!</li>
-        </ul>
+    </ul>
     </p>
 
+    <table>
+        <tr>
+            <th>Business Logic</th>
+            <th>URL</th>
+            <th>HTTP Method</th>
+            <th>Request body data format</th>
+            <th>Response body data format</th>
+        </tr>
+        <tr>
+            <td>Return a list of all movies</td>
+            <td>/movies</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding the list of movies: { id: 1, title: "Braveheart"}</td>
+        </tr>
+
+        <tr>
+            <td>Return data about a single movie</td>
+            <td>/movies/[ID]</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object data about a single movie: { id: 1, title: "Braveheart"}</td>
+        </tr>
+
+        <tr>
+            <td>Return data about a specific genre</td>
+            <td>/genre/[name]</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about a genre: { id: 1, name: "Thriller", description: "Like horror"}</td>
+        </tr>
+
+        <tr>
+            <td>Return data about a specific director</td>
+            <td>/director/[name]</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about a specific director: { id: 1, name: "Speilberg", movies: "ET"}</td>
+        </tr>
+
+        <tr>
+            <td>Allow a new user to register</td>
+            <td>/users</td>
+            <td>POST</td>
+            <td>A JSON object holding data about a specific user to add: { name: "coolFox1", password: "ApplePie4"}</td>
+            <td>A JSON object holding data about the user added, including ID: { id: 1, name: "coolFox1", password:
+                "ApplePie4"}</td>
+        </tr>
+
+        <tr>
+            <td>Allows users to update their info</td>
+            <td>/users/[userName]/[field]</td>
+            <td>PUT</td>
+            <td>None</td>
+            <td>A text message indicating user's info was updated.</td>
+        </tr>
+
+        <tr>
+            <td>Add data for a new movie</td>
+            <td>/movies</td>
+            <td>POST</td>
+            <td>A JSON object holding data about the movie to add, structured like { title: "Forrest Gump", year: 1999}
+            </td>
+            <td>A JSON object holding data about the movie that was added, including an ID { id: 1, title: "Forrest
+                Gump", year: 1999}</td>
+        </tr>
+
+        <tr>
+            <td>Remove a movie</td>
+            <td>/movies/[ID]</td>
+            <td>DELETE</td>
+            <td>None</td>
+            <td>A text message indicating the movie was removed.</td>
+        </tr>
+
+        <tr>
+            <td>Register a user</td>
+            <td>/users/[ID]</td>
+            <td>DELETE</td>
+            <td>None</td>
+            <td>A text message indicating whether the student was successfully removed.</td>
+        </tr>
+    </table>
 
 
 

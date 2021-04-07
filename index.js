@@ -56,6 +56,24 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
 });
 
+//Post request to add a new movie
+app.post('/movies', (req, res) => {
+    let newMovie = req.body;
+
+    if (!newMovie.title) {
+        const message = "missing title in request body";
+        res.status(400).send(message);
+    } else {
+        // newMovie.id = uuid.v4();
+        movies.push(newMovie);
+        res.status(201).send(newMovie);
+    }
+});
+
+//Return data about a single movie by name
+app.get('/movies/:title', (req, res) => {
+    res.json(movies.find((movie) => { return movies.name === req.params.name }));
+});
 
 //listen for requests
 app.listen(8080, () => {
