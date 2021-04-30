@@ -38,7 +38,7 @@
 
         <tr>
             <td>Return data about a single movie</td>
-            <td>/movies/[ID]</td>
+            <td>/movies/[movie title]</td>
             <td>GET</td>
             <td>None</td>
             <td>A JSON object data about a single movie: { id: 1, title: "Braveheart"}</td>
@@ -71,20 +71,19 @@
 
         <tr>
             <td>Allows users to update their info</td>
-            <td>/users/[userName]/[field]</td>
+            <td>/users/[userName]</td>
             <td>PUT</td>
-            <td>None</td>
-            <td>A text message indicating user's info was updated.</td>
+            <td>A JSON object holding updated information about user: {Username: CoolGuy, Password: Chill11, etc.}</td>
+            <td>A JSON object holding the updated user {Username: BigGuy, Password: unlock123, etc.}</td>
         </tr>
 
         <tr>
-            <td>Add data for a new movie</td>
-            <td>/movies</td>
+            <td>Add data for a new movie to user favorites</td>
+            <td>/user/[userName]/movies/[movie id]</td>
             <td>POST</td>
-            <td>A JSON object holding data about the movie to add, structured like { title: "Forrest Gump", year: 1999}
-            </td>
-            <td>A JSON object holding data about the movie that was added, including an ID { id: 1, title: "Forrest
-                Gump", year: 1999}</td>
+            <td>None</td>
+            <td>A JSON object holding data about the user with the new favorite movie {Username: RecklessG, Favorite
+                Movies: ID123, etc.}</td>
         </tr>
 
         <tr>
@@ -96,7 +95,7 @@
         </tr>
 
         <tr>
-            <td>Register a user</td>
+            <td>Deregister a user</td>
             <td>/users/[ID]</td>
             <td>DELETE</td>
             <td>None</td>
