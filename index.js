@@ -306,13 +306,17 @@ app.delete('/users/:Username', (req, res) => {
 });
 
 //Delete a movie from their list of favorites
-app.delete('/users/:Username/Movies/:MovieID', (req, res) => {
-    Users.findOneAndRemove({ Username: req.params.Username })
-        .then((user) => {
-            if (!user) {
-                res.status(400).send(req.params.Username + ' was not found');
+app.update('/users/:Username/Movies/:MovieID', (req, res) => {
+    Users.findOneAndUpdate({ Username: req.params.Username }, {
+        $pull: { FavoriteMovies: req.params.MovieID }
+    },
+        { new: true }, //This line makes sure that the updated document is returned
+        (err, updatedUser) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send('Error: ' + err);
             } else {
-                res.status(200).send(req.params.Username + ' was deleted.');
+                res.json(updatedUser);
             }
         })
         .catch((err) => {
