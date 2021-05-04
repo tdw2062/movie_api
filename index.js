@@ -20,6 +20,12 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '50mb', }));
 
 app.use(morgan('common'));
 
+//Require auth to create new endpoint
+let auth = require('./auth')(app);
+
+const passport = require('passport');
+require('./passport');
+
 //Create array of movie objects
 let movies = [
     {
@@ -89,7 +95,7 @@ let users = [
 // GET requests
 
 //GET all movies
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
     Movies.find()
         .then((movies) => {
             res.status(201).json(movies);
@@ -306,7 +312,7 @@ app.delete('/users/:Username', (req, res) => {
 });
 
 //Delete a movie from their list of favorites
-app.update('/users/:Username/Movies/:MovieID', (req, res) => {
+app.put('/users/:Username/Movies/:MovieID', (req, res) => {
     Users.findOneAndUpdate({ Username: req.params.Username }, {
         $pull: { FavoriteMovies: req.params.MovieID }
     },
